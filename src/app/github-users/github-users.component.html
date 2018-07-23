@@ -1,0 +1,81 @@
+<!-- <div *ngIf="actRoute.children.length === 0">
+  <div *ngFor="let user of githubUsersData$ | async ">
+    <div>
+      {{user.login }}
+    </div>
+
+    <div>
+      <img [src]="user.avatar_url">
+    </div>
+
+    <div *ngIf="user.site_admin">
+      Is an admin
+    </div>
+
+    <div>
+      <a [routerLink]="['user-details',user.login]" class="btn btn-primary"> Go to User details </a>
+    </div>
+
+  </div>
+</div>
+
+<router-outlet></router-outlet> -->
+<div class="container">
+  <div class="row">
+
+    <div class="col-sm-8">
+      <div *ngIf="actRoute.children.length === 0">
+
+        <div class="form-group">
+          <input type="text" #searchBox (keyup)="0" class="form-control" placeholder="Search Users">
+        </div>
+        <div class="row">
+        <div *ngFor="let user of githubUsers | nameFilter:searchBox.value">
+          <div *ngIf="user['github_app_empty_result']" class="alert alert-danger">
+            Your search keywords did not match any user please try again
+          </div>
+          <div *ngIf="!user['github_app_empty_result']">
+            <div class="col-sm-4">
+              <div class="card" style="width: 12rem;">
+                <img class="card-img-top" [src]="user.avatar_url" alt="Card image cap">
+                <div class="card-body">
+                  <h5 class="card-title"> {{user.login }}</h5>
+                  <div *ngIf="user.site_admin">
+                    Is an admin
+                  </div>
+                  <div *ngIf="!user.site_admin">
+                      General User
+                    </div>
+
+
+                  <div *ngIf="!user['githubAppFav']">
+                    <button (click)="addToFavourite(user.login,user)" class="btn btn-primary"> Add to Favourite</button>
+                  </div>
+                  <div *ngIf="user['githubAppFav']">
+                    <button (click)="removeFromFavourite(user,user.login)" class="btn btn-danger"> Remove</button>
+                  </div>
+                  <!-- <p class="card-text">
+          <div *ngIf="user.site_admin">
+            Is an admin
+          </div>
+        </p> -->
+        <br>
+                  <a [routerLink]="['user-details',user.login]" class="btn btn-primary"> User details </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+      <router-outlet></router-outlet>
+    </div>
+
+    <div class="col-sm-4">
+      <h1> GITHUB Favourite </h1>
+      <!-- pending use this as favourite list send data of favourite list to it-->
+      <!-- <app-github-favourite-users [gitHubUsers$]="githubUsersData$" [githubFavUsers]="favouriteList"></app-github-favourite-users> -->
+      <app-github-favourite-users [githubFavUsers]="favUsers" (removeUser)="removeFromFavourite($event)"></app-github-favourite-users>
+    </div>
+  </div>
+</div>

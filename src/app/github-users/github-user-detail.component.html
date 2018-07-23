@@ -1,0 +1,37 @@
+<!-- <div *ngIf="actRoute.children.length === 0">
+<div>
+        {{ githubUserData$ | async | json }}        
+</div>
+
+<a [routerLink]="['./user-repo']" class="btn btn-primary"> Repos </a>
+
+</div>
+
+<router-outlet></router-outlet> -->
+
+<div class="container">
+  <div *ngIf="actRoute.children.length === 0 && githubUser!=null">    
+      <div class="col-sm-4">
+        <div class="card" style="width: 19rem;">
+          <img class="card-img-top" [src]="githubUser.avatar_url" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title"> {{githubUser.name }}</h5>
+
+            <p class="card-text">
+
+              Username: {{githubUser.login }} <br>
+              Location : {{githubUser.location}} <br>
+              Created : {{githubUser.created_at | date}} <br>
+              <a [href]="githubUser.blog">Visit my personal blog to know more</a>
+
+
+            </p>
+            <a [routerLink]="['./user-repo']" class="btn btn-primary"> Repos </a>
+          </div>
+        </div>
+      </div>  
+      <a [routerLink]="['../../']" class="btn btn-primary"> Back </a>  
+  </div>
+</div>
+
+<router-outlet></router-outlet>

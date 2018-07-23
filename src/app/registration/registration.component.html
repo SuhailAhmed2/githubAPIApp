@@ -1,0 +1,70 @@
+<br><br>
+<div class="container">
+  <h1>Register A User</h1>
+<form novalidate [formGroup]="registrationForm" (ngSubmit)="registerUser()">
+  <div class="form-group">
+    <label>Username</label>
+    <input type="text" class="form-control" formControlName="username">
+  </div>
+  <div class="alert alert-danger"  *ngIf="( registrationForm.get('username').dirty || registrationForm.get('username').touched) && registrationForm.get('username').errors && registrationForm.get('username').errors['required']" >
+    username is required
+  </div>
+
+  <div class="alert alert-danger"  *ngIf="( registrationForm.get('username').dirty || registrationForm.get('username').touched) && registrationForm.get('username').errors && registrationForm.get('username').errors['name_exists']" >
+      Username is already taken. Please try other username
+    </div>
+
+  
+  <div formGroupName="passwordConfirmGroup">  
+
+    <div class="form-group">
+      <label>Password</label>
+      <input type="text" class="form-control" formControlName="password">
+    </div>
+
+    <div class="alert alert-danger"  *ngIf="( registrationForm.get('passwordConfirmGroup').get('password').dirty || registrationForm.get('passwordConfirmGroup').get('password').touched) && registrationForm.get('passwordConfirmGroup').get('password').errors && registrationForm.get('passwordConfirmGroup').get('password').errors['required']" >
+        password is required
+    </div>
+
+    <div class="form-group">
+      <label>Confirm</label>
+      <input type="text" class="form-control" formControlName="confirm">
+    </div>
+
+    <div class="alert alert-danger"  *ngIf="( registrationForm.get('passwordConfirmGroup').get('confirm').dirty || registrationForm.get('passwordConfirmGroup').get('confirm').touched) && registrationForm.get('passwordConfirmGroup').get('confirm').errors && registrationForm.get('passwordConfirmGroup').get('confirm').errors['required']" >
+        confirm password is required
+    </div>
+
+    <div class="alert alert-danger"  *ngIf="( registrationForm.get('passwordConfirmGroup').get('password').dirty || registrationForm.get('passwordConfirmGroup').get('confirm').touched) && ( registrationForm.get('passwordConfirmGroup').get('confirm').dirty || registrationForm.get('passwordConfirmGroup').get('confirm').touched) && registrationForm.get('passwordConfirmGroup').errors && registrationForm.get('passwordConfirmGroup').errors['nomatch']" >
+        passwords should match
+    </div>
+  </div>  
+
+  <button type="submit" class="btn btn-primary btn-lg" [disabled]="!registrationForm.valid">Submit</button>
+
+</form>
+
+<br>
+<br>
+
+<div *ngIf="submitted && registrationSuccessfull" class="alert alert-info">
+    User registerred successfully
+</div>
+
+<div *ngIf="submitted && !registrationSuccessfull"  class="alert alert-danger">
+    User registeration failed. Please choose other username.
+</div>
+<!-- 
+<p>Form Value: {{registrationForm.value | json}}</p>
+<p>Form Username Error: {{registrationForm.get('username').errors |json}}</p>
+<p>Form password Error: {{registrationForm.get('passwordConfirmGroup').get('password').errors |json}}</p>
+<p>Form password Error: {{registrationForm.get('passwordConfirmGroup').get('confirm').errors |json}}</p>
+<p>Form Errors: {{registrationForm.get('passwordConfirmGroup').errors |json}}</p>
+<p>Form Status: {{registrationForm.status}}</p>
+
+<p>Form Errors: {{registrationForm.get('username').errors |json}}</p>
+
+
+<div *ngIf="registrationForm.get('username').errors">Username is required</div> -->
+
+</div>

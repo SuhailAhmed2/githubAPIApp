@@ -1,0 +1,24 @@
+<div class="container">
+<div *ngFor="let repo of githubUserRepoData$ | async">
+
+    <div class="card" style="width: 19rem;">
+            <div class="card-body">
+        <h5 class="card-title"> {{repo.login }}</h5>
+    <div class="card-text">
+        <div *ngIf="repo.description!=null">Description: {{repo.description}}</div>
+        <div *ngIf="repo.description==null">Description not available for this repo</div>
+        <div *ngIf="repo.private">Private</div>
+        <div>Repo Url: {{repo.html_url}} </div>
+        <div>Total Open Issues: {{repo.open_issues_count}}</div>
+    </div>
+    </div>
+    </div>
+
+        
+</div>
+</div>
+
+<a [routerLink]="['../']" class="btn btn-primary"> Back </a>
+
+<!-- <h1>Favourite Users</h1>
+<app-github-favourite-users></app-github-favourite-users> -->
