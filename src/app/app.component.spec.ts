@@ -17,7 +17,9 @@ fdescribe("App Component", ()=>{
       userLoggedIn=():Observable<boolean>=>{ return of(false)}
       loginUser=(username:string,password:string):Observable<boolean>=>{ return of(true)}
       userLogOut()
-      {}
+      {
+        return of(false);
+      }
       canActivate() {
       }
     };
@@ -104,14 +106,31 @@ fdescribe("App Component", ()=>{
     username.setValue('testaccount');
     password.setValue('123456');  
     
-    expect(username.value).toEqual('testaccount');
-    expect(password.value).toEqual('123456');
+    // expect(username.value).toEqual('testaccount');
+    // expect(password.value).toEqual('123456');
 
     comp.isLogin();
 
     expect(username.value).toBeNull();
     expect(password.value).toBeNull();
 
+  });
+
+  it("should return isLoggedIn$ observable false when logout mthod called",()=>{
+    comp.logout();
+    comp.isLoggedIn$.subscribe(res=>{
+      expect(res).toBeFalsy();
+    });
+  });
+
+  it("should set component defaults on logout and form should be resetted",()=>{
+    comp.logout();
+    expect(comp.subscribe).toBeFalsy();
+
+    let username = comp.loginForm.controls['username']; 
+    let password = comp.loginForm.controls['password'];     
+    expect(username.value).toEqual('');
+    expect(password.value).toEqual('');
   });
 
 });
