@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { GithubApiService } from './github-api.service';
 
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { of, Observable, throwError } from 'rxjs';
 import { not } from '@angular/compiler/src/output/output_ast';
 
@@ -41,6 +41,22 @@ fdescribe('GithubApiService', () => {
     httpServiceSpy.get.and.returnValue(stubValue);
     //spyOn(Observable.prototype,'pipe').and.returnValue(of('suhail'));
     githubApiServ.getUsersData().subscribe(res => {
+      fail('expected an error not data');
+    },
+      err => {
+        expect(err).toBe("Server side error. Please try again")
+      });
+  });
+
+  it('#getUsersData should return an error when the server returns a 404', () => {
+    const errorResponse = new HttpErrorResponse({
+      error: 'test 404 error',
+      status: 404, statusText: 'Not Found'
+    });
+   
+    httpServiceSpy.get.and.returnValue(throwError(errorResponse));
+   
+    githubApiServ.getUsersData().subscribe(res => {      
       fail('expected an error not data');
     },
       err => {
