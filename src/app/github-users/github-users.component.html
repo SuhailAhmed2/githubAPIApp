@@ -20,6 +20,7 @@
 </div>
 
 <router-outlet></router-outlet> -->
+<div *ngIf="!errorOccured">
 <div class="container">
   <div class="row">
 
@@ -78,4 +79,9 @@
       <app-github-favourite-users [githubFavUsers]="favUsers" (removeUser)="removeFromFavourite($event)"></app-github-favourite-users>
     </div>
   </div>
+</div>
+
+</div>
+<div *ngIf="errorOccured">
+  {{errorMessage}}
 </div>

@@ -16,19 +16,38 @@ export class GithubUsersComponent implements OnInit, AfterViewInit {
   favouriteList:Array<any>;
   favUsers:Array<any>;
 
+  errorOccured:boolean;
+  errorMessage:string;
+
   constructor(private ghApi:GithubApiService, public actRoute: ActivatedRoute) { 
     /*
       using GithubApiService to get all users data and assigning to our observable
      */
+
+     this.errorOccured=false;
+     this.errorMessage=null;
     this.favouriteList=[];
     this.favUsers=[];
     this.githubUsers=[];
     this.githubUsersData$ = new Observable();
     this.githubUsersData$=this.ghApi.getUsersData(); 
     this.githubUsersData$.subscribe(res=>{
-      this.githubUsers=res;
+      console.log("res");
+      console.log(res);
+      if(res['customError'])
+      {
+        this.errorOccured=true;
+        this.errorMessage=res['message'];
+      }
+      else
+      {
+        this.errorOccured=false;
+        this.githubUsers=res;
+      }
     },
   err=>{
+    console.log("got error while fetching all users data");
+    console.log(err);
 
   });
   }
