@@ -33,7 +33,7 @@ export class RouterLinkDirectiveStub {
   }
 }
 
-fdescribe('GithubUsersComponent', () => {
+describe('GithubUsersComponent', () => {
   let component: GithubUsersComponent;
   let fixture: ComponentFixture<GithubUsersComponent>;
 
