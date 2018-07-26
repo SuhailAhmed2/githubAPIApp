@@ -68,10 +68,35 @@ fdescribe('GithubUsersComponent', () => {
     expect(component.favUsers[component.favUsers.length-1].login).toBe("test user");
   });
 
-  it('should add a throw an error when a same user is added to the favourite users list', () => {
+  it('should throw an error when a same user is added to the favourite users list', () => {
     let user={login:"test user"};
     component.addToFavourite(user.login,user);
-    expect(()=>component.addToFavourite(user.login,user)).toThrowError("cannot add same username again");
+    expect(()=>component.addToFavourite(user.login,user)).toThrowError("cannot add same username again loginName:test user");
+  });
+
+  it('should remove a user from the favourite list', () => {
+    let user={login:"test user"};
+    component.addToFavourite(user.login,user);
+    expect(component.favouriteList.length).toBe(1);
+    expect(component.favUsers.length).toBe(1);
+    component.removeFromFavourite(user,user.login);
+    expect(component.favouriteList.length).toBe(0);
+    expect(component.favUsers.length).toBe(0);
+  });
+
+  it('should throw an exception when user not in favourite list is removed', () => {
+    let user={login:"test user"};
+    expect(()=>component.removeFromFavourite(user,user.login)).toThrowError(/username was not found/);    
+  });
+
+  it('should throw an exception when user without githubFav property is removed from favourite list', () => {
+    let user={login:"test user"};
+    component.addToFavourite(user.login,user);
+    expect(component.favouriteList.length).toBe(1);
+    expect(component.favUsers.length).toBe(1);
+    expect(user['githubAppFav']).toBeTruthy();
+    let userWithNoFav={login:"test user"};
+    expect(()=>component.removeFromFavourite(userWithNoFav,userWithNoFav.login)).toThrowError(/username was added but githubAppFav/);    
   });
 
   
