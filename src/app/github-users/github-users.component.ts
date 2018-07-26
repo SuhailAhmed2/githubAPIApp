@@ -42,7 +42,7 @@ export class GithubUsersComponent implements OnInit, AfterViewInit {
       else
       {
         this.errorOccured=false;
-        this.githubUsers=res;
+        this.githubUsers=res;        
       }
     },
   err=>{

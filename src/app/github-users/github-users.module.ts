@@ -14,6 +14,15 @@ import { FavouritesManagementService } from '../favourites-management.service';
 import { GithubFavouriteUsersComponent } from './github-favourite-users.component';
 import { FavouritePipe } from '../favourite.pipe';
 
+class GithubComponentErrorHandler implements ErrorHandler {
+  handleError(error) {
+    // do something with the exception
+    console.log("error GithubComponentErrorHandler");
+    console.log(error);
+    alert(error);
+  }
+} 
+
 @NgModule({
   imports: [
     BrowserModule, 
@@ -28,16 +37,9 @@ import { FavouritePipe } from '../favourite.pipe';
     NameFilterPipe,
     FavouritePipe
   ],
-  providers: [GithubApiService,FavouritesManagementService]
+  providers: [GithubApiService,FavouritesManagementService,{provide: ErrorHandler, useClass: GithubComponentErrorHandler}]
 })
 export class GithubUsersModule {}
 
 
 
-class GithubComponentErrorHandler implements ErrorHandler {
-  handleError(error) {
-    // do something with the exception
-    console.log("error GithubComponentErrorHandler");
-    console.log(error);
-  }
-} 
