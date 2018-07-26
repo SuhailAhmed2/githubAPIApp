@@ -70,7 +70,7 @@ export class GithubUsersComponent implements OnInit, AfterViewInit {
     }
     else{
       //let errorObj={method:"addToFavourite", class:"GithubUsersComponent", file:"github-users.component.ts", message:"cannot add same username again", data:{userLoginName:userLoginName,userObj:user}};
-      let errorObj="cannot add same username again";
+      let errorObj="cannot add same username again loginName:"+userLoginName;
       throw new Error(errorObj); 
     }            
 
@@ -96,12 +96,14 @@ export class GithubUsersComponent implements OnInit, AfterViewInit {
         delete user['githubAppFav'];
       }
       else{
-        //throw error
+        let errorObj="username was added but githubAppFav not found exception loginName:"+loginName;
+        throw new Error(errorObj);
       }
     }
     else
     {
-      //throw error 
+      let errorObj="username was not found exception loginName:"+loginName;
+      throw new Error(errorObj); 
     }
   }
 
