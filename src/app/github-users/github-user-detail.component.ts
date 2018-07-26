@@ -20,8 +20,10 @@ export class GithubUserDetailComponent implements OnInit {
     this.sampleData=[1];
     this.githubUser=null;
     this.githubUserData$= new Observable();
-    this.actRoute.paramMap.subscribe(res=>{      
-      this.githubUserData$=this.ghApi.getUserData((res['params'].username));
+    this.actRoute.paramMap.subscribe(res=>{ 
+      console.log("paramMap");     
+      console.log(res);     
+      this.githubUserData$=this.ghApi.getUserData(res['params'].username);
       this.githubUserData$.subscribe(res=>{
         this.githubUser= res;
       });
