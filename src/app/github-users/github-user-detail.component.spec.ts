@@ -65,6 +65,14 @@ fdescribe('GithubUserDetailComponent', () => {
       console.log(callbackFn);
     });
 
+    /*
+      Used angulars doumentation testing folder placed as sibling to src folder. for activatedRoute
+      and activatedRoute.setParamMap
+      setted this paramMap for route parameters. stubbed functions in our constructor
+      and checked using jasmine's matchers whter the route parameter sent is received or not.
+    */
+
+
     activatedRoute.setParamMap({ username: "suhail"});
     console.log("githubService.getUserData.calls.mostRecent()");
     console.log(githubService.getUserData.calls.mostRecent());
