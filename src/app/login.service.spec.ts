@@ -3,7 +3,7 @@ import { TestBed, inject, async } from '@angular/core/testing';
 import { LoginService } from './login.service';
 import { Router } from '@angular/router';
 
-fdescribe('LoginService Tests', () => {
+describe('LoginService Tests', () => {
   let loginService:any;
   let routeService:any;  
   

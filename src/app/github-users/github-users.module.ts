@@ -1,4 +1,4 @@
-import { NgModule }       from '@angular/core';
+import { NgModule, ErrorHandler }       from '@angular/core';
 import { CommonModule }   from '@angular/common';
 
 
@@ -31,3 +31,13 @@ import { FavouritePipe } from '../favourite.pipe';
   providers: [GithubApiService,FavouritesManagementService]
 })
 export class GithubUsersModule {}
+
+
+
+class GithubComponentErrorHandler implements ErrorHandler {
+  handleError(error) {
+    // do something with the exception
+    console.log("error GithubComponentErrorHandler");
+    console.log(error);
+  }
+} 

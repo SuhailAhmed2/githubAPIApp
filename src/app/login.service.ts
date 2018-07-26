@@ -80,8 +80,8 @@ export class LoginService implements CanActivate {
     Also return observable which emits false.
     And, changes the route to home page.
      */
-    this.isLoggedIn=false;
-    this.router.navigate(['/']);
+    this.isLoggedIn=false;       
+    this.router.navigate(['/']);    
     return of(false);
   }
 

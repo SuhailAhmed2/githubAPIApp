@@ -8,7 +8,7 @@ import { not } from '@angular/compiler/src/output/output_ast';
 
 
 
-fdescribe('GithubApiService', () => {
+describe('GithubApiService', () => {
 
   let httpServiceSpy: jasmine.SpyObj<HttpClient>;
   let githubApiServ: GithubApiService;

@@ -69,7 +69,9 @@ export class GithubUsersComponent implements OnInit, AfterViewInit {
       user['githubAppFav']=true;
     }
     else{
-      //throw error
+      //let errorObj={method:"addToFavourite", class:"GithubUsersComponent", file:"github-users.component.ts", message:"cannot add same username again", data:{userLoginName:userLoginName,userObj:user}};
+      let errorObj="cannot add same username again";
+      throw new Error(errorObj); 
     }            
 
   }

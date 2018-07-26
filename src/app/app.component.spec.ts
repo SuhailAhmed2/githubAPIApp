@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { RegistrationComponent } from './registration/registration.component';
 import { APP_BASE_HREF } from '@angular/common';
 
-fdescribe("App Component", ()=>{
+describe("App Component", ()=>{
     class mockLoginService
      {
       isLoggedIn=false;
