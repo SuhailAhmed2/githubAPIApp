@@ -1,6 +1,6 @@
 import { NameFilterPipe } from './name-filter.pipe';
 
-fdescribe('NameFilterPipe', () => {
+describe('NameFilterPipe', () => {
   it('create an instance', () => {
     const pipe = new NameFilterPipe();
     expect(pipe).toBeTruthy();

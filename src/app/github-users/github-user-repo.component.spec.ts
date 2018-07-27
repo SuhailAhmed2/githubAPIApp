@@ -23,7 +23,7 @@ import { of } from 'rxjs';
 
   let activatedRoute: ActivatedRouteStub;
 
-  fdescribe('GithubUserRepoComponent', () => {
+  describe('GithubUserRepoComponent', () => {
     let component: GithubUserRepoComponent;
     let fixture: ComponentFixture<GithubUserRepoComponent>;
   

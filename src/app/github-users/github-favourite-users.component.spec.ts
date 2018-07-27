@@ -1,6 +1,6 @@
 import { GithubFavouriteUsersComponent } from "./github-favourite-users.component";
 
-fdescribe("GithubFavouriteUsersComponent",()=>{
+describe("GithubFavouriteUsersComponent",()=>{
     let githubFavComp:GithubFavouriteUsersComponent;
     beforeEach(()=>{
         githubFavComp=new GithubFavouriteUsersComponent();
