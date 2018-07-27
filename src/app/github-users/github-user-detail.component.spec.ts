@@ -25,7 +25,7 @@ export class RouterLinkDirectiveStub {
 
 let activatedRoute: ActivatedRouteStub;
 
-describe('GithubUserDetailComponent', () => {
+fdescribe('GithubUserDetailComponent', () => {
   let component: GithubUserDetailComponent;
   let fixture: ComponentFixture<GithubUserDetailComponent>;
 
@@ -58,6 +58,7 @@ describe('GithubUserDetailComponent', () => {
     fixture = TestBed.createComponent(GithubUserDetailComponent);
     component = fixture.componentInstance;
     let githubService=TestBed.get(GithubApiService);
+    let actRoute=TestBed.get(ActivatedRoute);
 
     spyOn(component.githubUserData$, "subscribe").and.callFake((callbackFn) => {
       console.log("checking from spy");
@@ -73,7 +74,7 @@ describe('GithubUserDetailComponent', () => {
     */
 
 
-    activatedRoute.setParamMap({ username: "suhail"});
+    actRoute.setParamMap({ username: "suhail"});
     console.log("githubService.getUserData.calls.mostRecent()");
     console.log(githubService.getUserData.calls.mostRecent());
     expect(githubService.getUserData.calls.mostRecent().args[0]).toContain("suhail");
