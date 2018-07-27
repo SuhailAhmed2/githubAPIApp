@@ -25,7 +25,7 @@ export class RouterLinkDirectiveStub {
 
 let activatedRoute: ActivatedRouteStub;
 
-fdescribe('GithubUserDetailComponent', () => {
+describe('GithubUserDetailComponent', () => {
   let component: GithubUserDetailComponent;
   let fixture: ComponentFixture<GithubUserDetailComponent>;
 
